@@ -1,0 +1,181 @@
+{% extends "layout/base.html" %}
+
+{% block head %}
+  <link href="{{ url_for('static', filename='css/world.css') }}" rel="stylesheet"/>
+  <link href="{{ url_for('static', filename='css/iThing.css') }}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+<form  method=[get]>
+{% block content %}
+
+<!-- Codes by HTML.am -->
+	<div id="wrap">
+
+<div style="width:1400px;height:650px;line-height:1.5em;overflow:scroll;padding:0px;">
+    <div class="container" align=center>
+      <div class="slider-form">
+		  <form id="form" class="form-inline" role="form">
+			<input type="hidden" id="minPrice" value="1500">
+			<input type="hidden" id="maxPrice" value="5000">
+
+			  <select id="type" name="type">
+			<option value="all type" {%if var_dict.thistype == 'all type'%} selected = "selected"{%endif%} >all type</option>
+			<option value="room" {%if var_dict.thistype == 'room'%} selected = "selected"{%endif%} >room</option>
+			<option value="storage" {%if var_dict.thistype == 'storage'%} selected = "selected"{%endif%} >storage</option>
+			<option value="studio"  {%if var_dict.thistype == 'studio'%} selected = "selected"{%endif%} >studio</option>
+			<option value="couch"  {%if var_dict.thistype == 'couch'%} selected = "selected"{%endif%}  >couch</option>
+			<option value="condo"  {%if var_dict.thistype == 'condo'%} selected = "selected"{%endif%} >condo</option>
+			<option value="home"  {%if var_dict.thistype == 'home'%} selected = "selected"{%endif%}>home</option>
+			<option value="spam"  {%if var_dict.thistype == 'spam'%} selected = "selected"{%endif%}>spam</option>
+			<option value="other" {%if var_dict.thistype == 'other'%} selected = "selected"{%endif%} >other</option>
+			<option value="apartment" {%if var_dict.thistype == 'apartment'%} selected = "selected"{%endif%}>apartment</option>
+		  </select>
+
+		  <select id="rate" name="rate">
+			  <option value="all rate" {%if var_dict.thisrate == 'all rate'%} selected = "selected"{%endif%}><b><font size = "5"> all rate</font></b></option>
+			  <option value="monthly" {%if var_dict.thisrate == 'monthly'%} selected = "selected"{%endif%}><b><font size = "5"> monthly</font></b></option>
+			  <option value="weekly" {%if var_dict.thisrate == 'weekly'%} selected = "selected"{%endif%}><b><font size = "5"> weekly </font></b></option>
+			  <option value="nightly" {%if var_dict.thisrate == 'nightly'%} selected = "selected"{%endif%} ><b><font size = "5"> nightly</font></b></option>
+			  <option value="lease" {%if var_dict.thisrate == 'lease'%} selected = "selected"{%endif%}><b><font size = "5">lease</font></b></option>
+		  </select>
+
+
+&nbsp;&nbsp;&nbsp; <a href="#" class="show_hide" >More options</a>
+<div class="slidingDiv">
+<br>
+
+		  <font size = 2><b>Parking </b><font size = 2>
+		  <select id="parking" name="parking">
+			  <font size = 2> <Parking> <font size = 2><option value="yes" {%if var_dict.parking == 'yes'%} selected = "selected"{%endif%}><b><font size = "5">yes</font></b></option>
+			  <option value="no" {%if var_dict.parking == 'no'%} selected = "selected"{%endif%}><b><font size = "5"> no</font></b></option>
+			  <option value="none" {%if var_dict.parking == 'none'%} selected = "selected"{%endif%}><b><font size = "5"> none</font></b></option>
+		  </select>
+
+		  &nbsp;&nbsp;&nbsp;<font size = 2><b>Quiet </b><font size = 2>
+		  <select id="quiet" name="quiet">
+			  <option value="yes" {%if var_dict.quiet == 'yes'%} selected = "selected"{%endif%}><b><font size = "5"> yes</font></b></option>
+			  <option value="no" {%if var_dict.quiet == 'no'%} selected = "selected"{%endif%}><b><font size = "5"> no</font></b></option>
+			  <option value="none" {%if var_dict.quiet == 'none'%} selected = "selected"{%endif%}><b><font size = "5">none</font></b></option>
+		  </select>
+
+		  &nbsp;&nbsp;&nbsp;<font size = 2><b>Laundry</b><font size = 2>
+		  <select id="laundry" name="laundry">
+		<option value="yes" {%if var_dict.laundry == 'yes'%} selected = "selected"{%endif%}><b><font size = "5">yes</font></b></option>
+			<option value="no" {%if var_dict.laundry == 'no'%} selected = "selected"{%endif%}><b><font size = "5">no</font></b></option>
+			<option value="none" {%if var_dict.laundry == 'none'%} selected = "selected"{%endif%}><b><font size = "5"> none</font></b></option>
+		  </select>
+
+
+
+<br>
+<a href="#" class="show_hide">less options</a></div>
+<br>
+<br>
+
+    <div id="slider" style="width: 500px; margin:0px auto">
+	</div>
+		  <br>
+		  <input type="hidden" id="minPrice" name="minPrice" value={{var_dict.minPrice}}>
+		  <input type="hidden" id="maxPrice" name="maxPrice" value={{var_dict.maxPrice}}>
+		  <input type="hidden" id="identifier" name="identifier" value={{var_dict.identifier}}>
+</form>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+          <select id="sort" name="sort">
+			<option value="DESC|{{var_dict.city}}" {% if var_dict.sort == 'DESC' %} selected="selected" {% endif %}>Descending</option>
+            <option value="ASC|{{var_dict.city}}" {% if var_dict.sort == 'ASC' %} selected="selected" {% endif %}>Ascending</option>
+          </select>
+
+		  <button id="submit" type="submit" value = "Submit"><span class = "glyphicon glyphicon-cog"></span><font size = 5>Submit</font></button>
+        </form>
+      </div>
+
+	  <br>
+	<br>
+  <div id="container" align=center>
+
+	  <form action="/interactivePrediction/default?identifier={{var_dict.identifier}}&minPrice={{var_dict.minPrice}}&maxPrice={{var_dict.maxPrice}}" method=post>
+		  <button id="submit" type="submit" value = "Submit"><b><font size = "5" align=left><p>Display</p><p>Predictive availability</p></font></b></button>
+	</form>
+
+	&nbsp;&nbsp;&nbsp;
+	<form action="/interactiveMap/default?identifier={{var_dict.identifier}}" method=post>
+		  <button id="submit" type="submit" value = "Submit"><b><font size = "5" align=left><p>Display</p><p>Interactive Map</p></font></b></button>
+	</form>
+
+	&nbsp;&nbsp;&nbsp;
+	<form action="/genDistribution/default?identifier={{var_dict.identifier}}" method=post>
+		  <button id="submit" type="submit" value = "Submit"><b><font size = "5" align=left><p>Display</p><p>Historical Distribution</p></font></b></button>
+
+	</div>
+
+			<p>
+	  <br>
+      <div id="table">
+		  <div class="table-responsive">
+          <table class="table table-bordered table-condensed table-striped">
+			  <thead>
+              <th>Index</th>
+              <th>Title</th>
+              <th>Price</th>
+            </thead>
+			<tbody>
+				{% for posting in postings %}
+			  	<tr>
+                	<td>{{loop.index}}</td>
+				  	<td><a href="{{posting.link}}"<\a><b>{{posting.title}}</b></td>
+					<td>{{posting.price}}</td> <!-- | format_currency}}</td>-->
+              		</tr>
+              {% endfor %}
+
+            </tbody>
+		</table>
+</div>
+</div>
+</div>
+
+  <div id="container" align=center>
+        <p> &copy; Sara Salha; <b><a href="http://insightdatascience.com" target="_blank">Insight</a></b> Data Science 2014</p>
+     </div>
+
+	<script src="http://cdn.jsdelivr.net/jquery/1.8.2/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script src={{ url_for('static', filename='js/jQRangeSlider-min.js') }}></script>
+    <script>
+ //<!--
+
+$(document).ready(function(){
+  
+});
+
+	$(".slidingDiv").hide();
+    $(".show_hide").show();
+ 
+    $('.show_hide').click(function(){
+    $(".slidingDiv").slideToggle();
+    });
+  
+
+function slidePrice(event,ui) {
+	var prices = slider.rangeSlider("values");
+		sMinPrice = parseInt(prices.min, 10);
+		sMaxPrice = parseInt(prices.max, 10);
+		$("#prices").text("min price: $"+sMinPrice+", max price: $"+sMaxPrice);
+		$('[id=minPrice]').val(sMinPrice).toString()
+		$('[id=maxPrice]').val(sMaxPrice).toString()
+	};
+
+ var slider = $("#slider").rangeSlider({defaultValues:{min: {{var_dict.minPrice}}, max: {{var_dict.maxPrice}}}}, {step: 50});
+
+slider.rangeSlider("bounds", 0, 10000);
+slider.rangeSlider("max", {{var_dict.maxPrice}});
+slider.rangeSlider("min", {{var_dict.minPrice}});
+slider.bind("valuesChanged", slidePrice );
+slidePrice()
+
+//-->
+    </script>
+
+{% endblock %}
